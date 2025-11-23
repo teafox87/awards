@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>失落的社工宝藏 - 解锁谜题</title>
+    <style>
+        /* CSS 样式部分 - 用于美化页面 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #1a73e8; /* 社工主题色 */
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        p#message {
+            margin-top: 15px;
+            min-height: 25px; /* 确保消息区域有最小高度 */
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #28a745; /* 绿色按钮 */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* 成功消息的特殊样式 */
+        .success {
+            color: #28a745;
+            font-size: 1.2em;
+        }
+
+        /* 错误消息的特殊样式 */
+        .error {
+            color: #dc3545;
+        }
+
+        /* 宝藏内容区域 */
+        #treasure-content {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px dashed #1a73e8;
+            border-radius: 8px;
+            background-color: #e9f5ff;
+            display: none; /* 默认隐藏 */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>失落的社工宝藏</h1>
+        <p>需要输入正确答案才能解锁最终大奖。</p>
+
+        <input type="text" id="answer-input" placeholder="请输入你的答案...">
+        <button onclick="checkAnswer()">解锁宝藏</button>
+
+        <p id="message"></p>
+
+        <div id="treasure-content">
+            <h2>🎉 恭喜你！失落宝藏已向你们打开！🎉</h2>
+            <p>勇者们啊！庆祝吧！</p>
+            </div>
+    </div>
+
+    <script>
+        // JavaScript 逻辑部分 - 处理互动
+        
+        // 设定的正确答案，不区分大小写和首尾空格
+        const CORRECT_ANSWERS = ["饭饭之交", "助人自助"];
+        
+        // 初始和最大尝试次数
+        let attemptsLeft = 13;
+        const MAX_ATTEMPTS = 13;
+
+        // 获取页面元素
+        const inputField = document.getElementById('answer-input');
+        const messageDisplay = document.getElementById('message');
+        const treasureContent = document.getElementById('treasure-content');
+        const unlockButton = document.querySelector('button');
+
+
+        /**
+         * 检查用户输入的答案是否正确
+         */
+        function checkAnswer() {
+            // 如果宝藏已经解锁，则不再进行检查
+            if (attemptsLeft === 0 && messageDisplay.classList.contains('success')) {
+                return;
+            }
+
+            // 获取用户输入并清理（去除首尾空格）
+            const userAnswer = inputField.value.trim();
+
+            // 检查答案是否在正确答案列表中
+            const isCorrect = CORRECT_ANSWERS.includes(userAnswer);
+
+            // 清除之前的样式
+            messageDisplay.className = '';
+
+            if (isCorrect) {
+                // ** 答案正确时的逻辑 **
+                
+                messageDisplay.textContent = "🎉 失落宝藏已向你们打开！";
+                messageDisplay.classList.add('success');
+                
+                // 显示宝藏内容
+                treasureContent.style.display = 'block';
+
+                // 禁用输入框和按钮
+                inputField.disabled = true;
+                unlockButton.disabled = true;
+
+            } else {
+                // ** 答案错误时的逻辑 **
+
+                attemptsLeft--; // 机会减一
+
+                if (attemptsLeft > 0) {
+                    // 还有机会
+                    messageDisplay.textContent = `错啦错啦，还有${attemptsLeft}次机会喔！`;
+                    messageDisplay.classList.add('error');
+                    
+                } else {
+                    // 机会用尽
+                    messageDisplay.textContent = `错啦错啦！13次机会已用完。宝藏继续尘封...`;
+                    messageDisplay.classList.add('error');
+
+                    // 禁用输入框和按钮
+                    inputField.disabled = true;
+                    unlockButton.disabled = true;
+                }
+            }
+
+            // 每次检查后清空输入框，方便下次输入
+            inputField.value = '';
+        }
+    </script>
+
+</body>
+</html>
