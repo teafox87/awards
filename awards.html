@@ -6,166 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2023级社工一班颁奖仪式</title>
     <style>
-        /* --- 基础背景 --- */
-        body {
-            font-family: "Microsoft YaHei", "SimHei", sans-serif;
-            background-color: #8B0000;
-            background-image: linear-gradient(135deg, #8B0000, #2c0505);
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        /* --- 核心容器 --- */
-        .container {
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; /* 初始垂直居中 */
-            align-items: center;
-            width: 90%;
-            max-width: 800px;
-            margin: 0 auto;
-            /* 位置变化的过渡动画 */
-            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); 
-        }
-
-        /* 上移后的状态 */
-        .container.move-up {
-            justify-content: flex-start;
-            padding-top: 60px; 
-        }
-
-        h1 {
-            font-size: 40px;
-            color: #FFD700;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #FFD700;
-            display: inline-block;
-            padding-bottom: 10px;
-            text-align: center;
-        }
-
-        /* --- 输入框区域 --- */
-        .search-box {
-            background-color: rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 20px; 
-            border: 1px solid #FFD700;
-            text-align: center;
-            transition: margin 0.5s;
-        }
-
-        .container.move-up .search-box {
-            margin-bottom: 50px;
-        }
-
-        input {
-            padding: 10px 15px;
-            font-size: 18px;
-            width: 200px;
-            border-radius: 5px;
-            border: none;
-            text-align: center;
-            outline: none;
-        }
-
-        /* 查询按钮样式 */
-        .btn-search {
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #FFD700;
-            color: #8B0000;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-left: 10px;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        .btn-search:hover {
-            background-color: #fff;
-            transform: scale(1.05);
-        }
-
-        /* --- 颁奖展示区域 --- */
-        #award-stage {
-            display: none;
-            opacity: 0; 
-            text-align: center;
-            transition: opacity 0.5s ease-in; 
-            width: 100%;
-        }
-
-        .container.move-up #award-stage {
-            opacity: 1;
-        }
-
-        /* ✨ 修改：正方形相框 ✨ */
-        .photo-frame {
-            width: 250px;
-            height: 250px;
-            border: 5px solid #FFD700;
-            border-radius: 15px; 
-            overflow: hidden;
-            margin: 0 auto 20px;
-            background-color: #fff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 保持比例充满框，不拉伸 */
-        }
-
-        .award-text h2 {
-            font-size: 32px;
-            color: #FFD700;
-            margin: 10px 0;
-        }
-
-        .award-text p {
-            font-size: 20px;
-            line-height: 1.5;
-            color: #f0f0f0;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* ✨ 新增：返回按钮样式 ✨ */
-        .btn-reset {
-            margin-top: 40px; /* 与上方文字拉开距离 */
-            padding: 8px 25px;
-            font-size: 16px;
-            background-color: transparent; /* 透明背景 */
-            color: #ccc;
-            border: 1px solid #ccc;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .btn-reset:hover {
-            border-color: #FFD700;
-            color: #FFD700;
-            background-color: rgba(255, 215, 0, 0.1);
-        }
-
-        /* 动画 */
-        @keyframes floatUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-stage {
-            animation: floatUp 0.8s ease-out forwards;
-            animation-delay: 0.3s; 
-            opacity: 0; 
-        }
-
+        /* --- 样式部分保持不变 --- */
+        body { font-family: "Microsoft YaHei", "SimHei", sans-serif; background-color: #8B0000; background-image: linear-gradient(135deg, #8B0000, #2c0505); color: #fff; margin: 0; padding: 0; overflow-x: hidden; }
+        .container { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 90%; max-width: 800px; margin: 0 auto; transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .container.move-up { justify-content: flex-start; padding-top: 60px; }
+        h1 { font-size: 40px; color: #FFD700; margin-bottom: 40px; border-bottom: 2px solid #FFD700; display: inline-block; padding-bottom: 10px; text-align: center; }
+        .search-box { background-color: rgba(0, 0, 0, 0.3); padding: 30px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #FFD700; text-align: center; transition: margin 0.5s; }
+        .container.move-up .search-box { margin-bottom: 50px; }
+        input { padding: 10px 15px; font-size: 18px; width: 200px; border-radius: 5px; border: none; text-align: center; outline: none; }
+        .btn-search { padding: 10px 20px; font-size: 18px; background-color: #FFD700; color: #8B0000; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-left: 10px; transition: 0.3s; }
+        .btn-search:hover { background-color: #fff; transform: scale(1.05); }
+        #award-stage { display: none; opacity: 0; text-align: center; transition: opacity 0.5s ease-in; width: 100%; }
+        .container.move-up #award-stage { opacity: 1; }
+        .photo-frame { width: 250px; height: 250px; border: 5px solid #FFD700; border-radius: 15px; overflow: hidden; margin: 0 auto 20px; background-color: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+        .award-text h2 { font-size: 32px; color: #FFD700; margin: 10px 0; }
+        .award-text p { font-size: 20px; line-height: 1.5; color: #f0f0f0; max-width: 700px; margin: 0 auto; }
+        .btn-reset { margin-top: 40px; padding: 8px 25px; font-size: 16px; background-color: transparent; color: #ccc; border: 1px solid #ccc; border-radius: 25px; cursor: pointer; transition: all 0.3s; }
+        .btn-reset:hover { border-color: #FFD700; color: #FFD700; background-color: rgba(255, 215, 0, 0.1); }
+        @keyframes floatUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-stage { animation: floatUp 0.8s ease-out forwards; animation-delay: 0.3s; opacity: 0; }
     </style>
 </head>
 <body>
@@ -181,89 +41,87 @@
 
         <div id="award-stage">
             <div class="photo-frame">
-                <img id="award-img" src="" alt="照片区域">
+                <img id="award-img" src="" alt="照片区域" onerror="this.src='https://via.placeholder.com/250/000000/FFFFFF?text=Image+Missing'">
             </div>
             <div class="award-text">
                 <h2 id="award-title"></h2>
                 <p id="award-desc"></p>
             </div>
-            
             <button class="btn-reset" onclick="resetPage()">🔄 返回初始页</button>
         </div>
     </div>
 
     <script>
-        // --- 数据库配置 (请确保图片链接是有效的) ---
-        // 注意：所有数据都必须包在这一对大括号 {} 里面！
+        // --- 数据库配置：请替换下面的 img: "" 为您的在线图片链接 ---
         const database = {
-            "廖照清": {
-                title: " 👀最佳间谍奖",
+            "廖照清": { 
+                title: " 👀最佳间谍奖", 
                 desc: "007都无法演绎出的真情流露",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=LIAO" 
+                img: "在这里粘贴廖照清照片的在线链接" // <-- 请用您图床的链接替换这一行！
             },
-            "郭祺琪": {
-                title: " 🍟v50男王",
+            "郭祺琪": { 
+                title: " 🍟v50男王", 
                 desc: "疯狂星期四，v我50",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=GUO"
+                img: "在这里粘贴郭祺琪照片的在线链接" // <-- 请用您图床的链接替换这一行！
             },
-            "元丽婷": {
-                title: "🍔v50女王",
+            "元丽婷": { 
+                title: "🍔v50女王", 
                 desc: "最爱吃蛋挞的一集！",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=YUAN"
+                img: "在这里粘贴元丽婷照片的在线链接" // <-- 请用您图床的链接替换这一行！
             },
-            "杨子涵": {
-                title: "✨最佳靠谱奖",
+            "杨子涵": { 
+                title: "✨最佳靠谱奖", 
                 desc: "这是妈妈吗？",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=YANG"
+                img: "在这里粘贴杨子涵照片的在线链接" // <-- 请用您图床的链接替换这一行！
             },
-            "高鸿良": {
-                title: "🖤最黑裁判奖",
+            "高鸿良": { 
+                title: "🖤最黑裁判奖", 
                 desc: "吹哨啊！！你快吹哨啊！",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=GAO"
+                img: "在这里粘贴高鸿良照片的在线链接" // <-- 请用您图床的链接替换这一行！
             },
-            "张瑞麟": {
-                title: "📷一镜到底奖",
+            "张瑞麟": { 
+                title: "📷一镜到底奖", 
                 desc: "张艺谋一生都在追寻的演员",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=ZHANG"
+                img: "在这里粘贴张瑞麟照片的在线链接" // <-- 请用您图床的链接替换这一行！
             },
-            "袁帅": {
-                title: "🔮最佳指挥奖",
+            "袁帅":   { 
+                title: "🔮最佳指挥奖", 
                 desc: "有没有考虑去当指挥家？",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=YUAN"
+                img: "在这里粘贴袁帅照片的在线链接" // <-- 请用您图床的链接替换这一行！
             },
-            "罗欣怡": {
-                title: "🎤金话筒奖",
+            "罗欣怡": { 
+                title: "🎤金话筒奖", 
                 desc: "考虑上中央电视台新闻联播吗？",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=LUO"
+                img: "在这里粘贴罗欣怡照片的在线链接" // <-- 请用您图床的链接替换这一行！
             },
-            "孙雨欣": {
-                title: "🍃最佳文静奖",
+            "孙雨欣": { 
+                title: "🍃最佳文静奖", 
                 desc: "高雅！永不过时！",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=SUN"
+                img: "在这里粘贴孙雨欣照片的在线链接" // <-- 请用您图床的链接替换这一行！
             },
-            "昂杰拉旦": {
-                title: "👑最佳皇帝奖",
+            "昂杰拉旦": { 
+                title: "👑最佳皇帝奖", 
                 desc: "陛下万岁万万岁",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=ANG"
+                img: "https://youke1.picui.cn/s1/2025/11/22/6921ab380b51a.jpg" // <-- 请用您图床的链接替换这一行！
             },
-            "冯昊海": {
-                title: "⚽最佳足球员奖",
+            "冯昊海": { 
+                title: "⚽最佳足球员奖", 
                 desc: "射门！进球！得分！",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=FENG"
+                img: "在这里粘贴冯昊海照片的在线链接" // <-- 请用您图床的链接替换这一行！
             },
-            "杨思佳": {
-                title: "🕶️最佳默契奖",
+            "杨思佳": { 
+                title: "🕶️最佳默契奖", 
                 desc: "所有队友都称赞的默契！",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=YANG"
+                img: "在这里粘贴杨思佳照片的在线链接" // <-- 请用您图床的链接替换这一行！
             },
-            "赵爽": {
-                title: "📚最佳督导奖",
+            "赵爽":   { 
+                title: "📚最佳督导奖", 
                 desc: "桃李不言，下自成蹊",
-                img: "https://via.placeholder.com/300/FFD700/8B0000?text=ZHAO"
+                img: "在这里粘贴赵爽照片的在线链接" // <-- 请用您图床的链接替换这一行！
             }
-        }; // <--- 这里才是唯一的结束！
+        };
 
-        let hasMovedUp = false; // 记录状态
+        let hasMovedUp = false;
 
         function showAward() {
             var container = document.getElementById('mainContainer');
@@ -275,13 +133,12 @@
             
             var name = input.value.replace(/\s+/g, '');
 
-            if (!name) {
-                alert("请输入名字哦！");
-                return;
-            }
+            if (!name) { alert("请输入名字哦！"); return; }
 
-            if (database[name]) {
-                img.src = database[name].img;
+            // 从 database 对象里读取图片链接
+            if (database[name] && database[name].img) {
+                img.src = database[name].img; // <-- 使用在线链接
+                
                 title.innerHTML = database[name].title;
                 desc.innerHTML = database[name].desc;
 
@@ -289,40 +146,27 @@
                     container.classList.add('move-up');
                     hasMovedUp = true;
                 }
-
                 stage.style.display = 'none';
                 stage.classList.remove('animate-stage');
-                
                 setTimeout(function(){
                     stage.style.display = 'block';
                     void stage.offsetWidth;
                     stage.classList.add('animate-stage');
                 }, 300);
-                
-                input.value = ''; // 清空输入框
-
+                input.value = ''; 
             } else {
-                alert("名单里没找到这个名字！！！不收插班生喵！");
+                alert("名单里没找到【" + name + "】！或该同学图片链接缺失。");
             }
         }
 
-        // ✨ 重置页面功能的逻辑 ✨
         function resetPage() {
             var container = document.getElementById('mainContainer');
             var stage = document.getElementById('award-stage');
             var input = document.getElementById('nameInput');
-
-            // 1. 移除上移的类名 -> 触发 CSS 动画滑回中间
             container.classList.remove('move-up');
-            
-            // 2. 隐藏奖项区域
             stage.style.display = 'none';
             stage.classList.remove('animate-stage');
-
-            // 3. 清空可能存在的输入
             input.value = '';
-
-            // 4. 重置状态变量
             hasMovedUp = false;
         }
     </script>
